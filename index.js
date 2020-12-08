@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport')
 require ('./passport')
 
+const indexRouter = require('./routes/auth')
 const userRouter = require('./routes/user')
 
 const app = express()
@@ -37,6 +38,7 @@ extended: true
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use('/auth', userRouter)
+app.use('/auth', indexRouter)
+app.use('/user', userRouter)
 
 app.listen(PORT, () => console.log(`Server lisening to Kygo on port ${PORT}.`))
