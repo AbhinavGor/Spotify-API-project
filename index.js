@@ -1,10 +1,13 @@
 const express = require('express')
 const cookieSession = require('cookie-session')
+const ejs = require('ejs')
+const expressLayouts = require('express-ejs-layouts')
+const bodyParser = require('body-parser');
 
 const passport = require('passport')
 require ('./passport')
 
-const isLoggedIn = require('./Middleware/auth')
+const userRouter = require('./routes/user')
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -14,30 +17,26 @@ app.use(cookieSession({
     keys: ["key1", "key2"],
     secret: process.env.SESSION_SECRET,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    maxAge: 10*60*1000      //hours*min*sec*ms
 }))
 
-app.use(passport.initialize());
-app.use(passport.session());
+// EJS
+app.use(expressLayouts);
+app.set('view engine', 'ejs');
+app.use( express.static( "public" ) );
 
-app.get('/', isLoggedIn, (req, res) => {
-    res.send({"message":`Hello ${req.user.displayName}!`, user: req.user})
-})
+// Express body parser
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json({limit: '2mb'}));
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+limit: '2mb',
+extended: true
+})); 
 
-app.get('/auth/error', (req, res) => res.send("Unknown Error"))
+app.use(passport.initialize())
+app.use(passport.session())
 
-app.get('/auth/spotify', passport.authenticate('spotify'))
-
-app.get('/auth/spotify/callback', passport.authenticate('spotify', {
-    failureRedirect: '/auth/error'}),
-    function(req, res){
-        res.redirect('/')
-})
-
-app.get('/logout', (req, res) => {
-    req.session = null;
-    req.logout(); 
-    res.redirect('/');
-})
+app.use('/auth', userRouter)
 
 app.listen(PORT, () => console.log(`Server lisening to Kygo on port ${PORT}.`))

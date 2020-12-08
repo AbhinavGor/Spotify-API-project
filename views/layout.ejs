@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com -->
+  <title>THEPC - The Fourth Estate</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://kit.fontawesome.com/e57fcbd46d.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/spotify-login/dist/spotify-login.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169020736-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-169020736-1');
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+    body {
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.8;
+      color: #191414;
+      overflow-x: hidden !important;
+    }
+
+  .spotify-button{
+    background-color: #1DB954;
+    /* background-color: #191414; */
+    font-weight: 600;
+    width: fit-content;
+    justify-content: space-around;
+  }
+
+  /* Dashboard */
+  .profile-picture{
+    height: auto;
+    width: 10%;
+    border-radius: 200px;
+  }
+
+  .profile-details{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .profile-details h2{
+    align-self: center;
+    padding: 0 20px;
+    font-weight: bold;
+  }
+
+
+  .jumbotron {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://cdn-www.avid.com/-/media/avid/images/solutions/news-production/wplg-demand-gen-2.jpg?h=600&iar=0&w=1200&hash=230D8336EB0026CD5BE97D2F5C3D6490");
+    color: #fff;
+    padding: 100px 0px;
+    height: fit-content;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    min-width: 100vw;
+    width: min-content;
+  }
+  
+  .navbar {
+    margin-bottom: 0;
+    background-color: #2c2c2c;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+    font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #2c2c2c !important;
+    background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+  }
+  footer .glyphicon {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #2c2c2c;
+  }
+  
+  footer{
+    background-color: #333;
+  overflow: hidden;
+  position: fixed !important;
+  bottom: 0 !important;
+  width: 100%;
+  }
+  
+  @media screen and (max-width: 720px) {
+    footer{
+      overflow-x: hidden !important;
+    }
+    .profile-picture{
+      width: 100px !important;
+      height: 100px !important;
+    }
+  }
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+  <div><%- body%></div>
+
+  <!-- <footer class='navbar navbar-expand-sm bg-grey navbar-grey hide-sm'>
+    <strong>&copy; Abhinav Gorantla
+    </strong>
+  </footer>
+  <footer class='navbar navbar-expand-sm bg-grey navbar-grey hide-lg'>
+    <strong>&copy; Abhinav Gorantla
+    </strong>
+  </footer> -->
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+  
+  $(window).scroll(function() {
+    $(".slideanim").each(function(){
+      var pos = $(this).offset().top;
+
+      var winTop = $(window).scrollTop();
+        if (pos < winTop + 600) {
+          $(this).addClass("slide");
+        }
+    });
+  });
+})
+</script>
+
+</body>
+</html>
