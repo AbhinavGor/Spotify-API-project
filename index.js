@@ -13,6 +13,19 @@ const userRouter = require('./routes/user')
 const app = express()
 const PORT = process.env.PORT || 3000
 
+// Mongo Databse Connection
+const mongoose = require("mongoose")
+require('dotenv').config();
+
+mongoose.connect(process.env.MONGO_URI,{
+    useNewUrlParser: true,
+    useUnifiedTopology:true,
+    useCreateIndex: true,
+    useFindAndModify: false
+}).then(()=> {
+    console.log("MONGO DB CONNECTED!")
+}).catch((e)=>console.log("Cannot Connect to Mongo",e))
+
 app.use(cookieSession({
     name: "spotify-auth-session",
     keys: ["key1", "key2"],

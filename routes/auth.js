@@ -3,15 +3,16 @@ const passport = require('passport')
 
 const isLoggedIn = require('../Middleware/auth')
 
+const User = require('../models/User')
+
 const router = express.Router()
 
 router.get('/welcome', (req, res) => {
     res.render('landing')
 })
 router.get('/', isLoggedIn, (req, res) => {
-    console.log(req);
+    // console.log(req.user);
     res.render('dashboard', {user: req.user})
-    // res.send({"message":`Hello ${req.user.displayName}!`, user: req.user})
 })
 
 router.get('/error', (req, res) => res.send("Unknown Error"))
