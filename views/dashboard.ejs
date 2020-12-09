@@ -1,0 +1,10 @@
+
+<div class="container-fluid d-flex flex-column p-4 m-4 dashboard">
+    <div class="profile-details">
+        <img src="<%= user.photos[0] %>" class="profile-picture"/>
+        <h2><%= user.displayName %></h2>
+    </div><br />
+    <a href="/user/artists"><button class="btn btn-primary">Show my top artists</button></a>
+    <br />
+    <a href="/user/tracks"><button disabled class="btn btn-primary">Show my top tracks</button></a>
+  </div>

@@ -1,0 +1,18 @@
+
+<div class="container-fluid d-flex flex-column p-4 m-4">
+    <div class="profile-details">
+        <img src="<%= user.photos[0] %>" class="profile-picture"/>
+        <h2><%= user.displayName %></h2>
+    </div><br />
+    <a href="/auth"><button class="btn btn-primary">Go back to home</button></a>    
+    <h1>Your favourite artists</h1>
+    <div class="artists-details">
+        <% artists.items.forEach(function(artist){ %>
+            <div class="card">
+                <img src="<%= artist.images[0].url %>" alt="John" style="width:100%">
+                <h4><%= artist.name %></h4>
+                <p><a href = "<%= artist.external_urls.spotify %>"><button class="btn btn-dark">Listen on Spotify</button></a></p>
+            </div>
+        <% }) %>        
+    </div>
+  </div>

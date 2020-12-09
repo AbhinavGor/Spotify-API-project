@@ -34,6 +34,12 @@ function (accessToken,  refreshToken, profile, done){
                 return done(err, user);
             });
         } else{
+            user.accessToken = accessToken
+            user.save(function(err) {
+                if (err) console.log(err);
+                return done(err, user);
+            });
+            
             return(err, user)
         }
     })
