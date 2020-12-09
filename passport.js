@@ -15,7 +15,7 @@ passport.deserializeUser((user, done) => {
 passport.use(new SpotifyStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/spotify/callback"
+    callbackURL: process.env.CALLBACK_URL
 },
 function (accessToken,  refreshToken, profile, done){
     User.findOne({spotifyID: profile.id}, (err, user) => {
@@ -39,7 +39,7 @@ function (accessToken,  refreshToken, profile, done){
                 if (err) console.log(err);
                 return done(err, user);
             });
-            
+
             return(err, user)
         }
     })
